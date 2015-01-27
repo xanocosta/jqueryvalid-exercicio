@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>158 -exercicio validacao</title>
+  <link rel="shortcut icon" href="favicon.ico" />  
+  <link rel="stylesheet" href="estilo.css">
+</head>
+
+<body>
+  <form id="ex1" action="index_exvalid.html" method="post" accept-charset="utf-8">
+    <label for="localidade">Localidade</label>
+    <input id="localidade" type="text" name="localidade" value="">
+    
+    <br></br>
+    <label for="email1">Email</label>
+    <input id="email1" type="email" name="email1" value=""><br>
+    <br></br>
+    <label for="email2">Email</label>
+    <input id="email2" type="email" name="email2" value=""><br>
+    
+    <br></br>
+    <input type="submit">
+    </form> 
+
+  <script src="jquery.js"></script>
+  <script src="jqueryvalid/dist/jquery.validate.js"></script>
+  
+
+  <script> 
+  $("#ex1").validate(
+  {
+    rules:{
+
+      localidade: {
+        required: true,
+        minlength: 5,
+      },
+
+
+      email1: {
+        required: true,
+        minlength: 5,
+        email: true,
+      },
+
+      email2: {
+        required: true,
+        minlength: 5,
+        equalTo: "#email1",
+        email: true,
+      },
+    },
+
+    messages:{
+      localidade:'a localida tem de ter mais de 5 caractares',
+
+      email1: {
+        email: "o formato do email deve ser xxxx@xxxx.xxx ",
+        required: "email obrigatorio",
+        minlength: jQuery.validator.format("insira pelo menos {0} characters"),
+      },
+      
+      email2: {
+        required: "repita o seu email",
+        minlength: jQuery.validator.format("insira pelo menos {0} characters"),
+        equalTo: "devem ser iguais",
+      },
+
+
+
+    },
+  }
+    );
+  </script>
+
+</body>
+</html>
